@@ -26,7 +26,7 @@ public class MonitoringCallback implements MqttCallback {
 	@Override
 	public void messageArrived(String topic, MqttMessage message) throws Exception {
 		ResourceMonitorData resourceMonitorData = getResourceMonitorData(topic, message.toString());
-		
+		System.out.println("Message Arrived : "+message.toString());
 	}
 
 	private ResourceMonitorData getResourceMonitorData(String topic, String message){

@@ -1,7 +1,7 @@
 package org.fog.entities;
 
 public class ResourceMonitorData {
-	
+	String id;
 	int level;
 	double lat_l;
 	double lat_u;
@@ -11,8 +11,9 @@ public class ResourceMonitorData {
 	double mem;
 	double nw;
 	
-	public ResourceMonitorData(int level, double lat_l, double lat_u, double long_l, double long_u, 
+	public ResourceMonitorData(String id, int level, double lat_l, double lat_u, double long_l, double long_u, 
 			double cpu, double mem, double nw){
+		this.id = id;
 		this.level = level;
 		this.lat_l = lat_l;
 		this.lat_u = lat_u;
@@ -85,6 +86,14 @@ public class ResourceMonitorData {
 
 	public void setNw(double nw) {
 		this.nw = nw;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 }
