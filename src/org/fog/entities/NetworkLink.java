@@ -1,7 +1,5 @@
 package org.fog.entities;
 
-import java.util.UUID;
-
 public class NetworkLink {
 	private String id;
 	private String endPointUp;
@@ -14,7 +12,7 @@ public class NetworkLink {
 		this.endPointDown = endPointDown;
 	}
 	public NetworkLink(String endPointUp, String endPointDown){
-		this.id = UUID.randomUUID().toString();
+		this.id = endPointDown+"-->"+endPointUp;
 		this.endPointUp = endPointUp;
 		this.endPointDown = endPointDown;
 	}
@@ -24,7 +22,7 @@ public class NetworkLink {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String endPointUp() {
+	public String getEndPointUp() {
 		return endPointUp;
 	}
 	public void setEndPointUp(String endPointUp) {
