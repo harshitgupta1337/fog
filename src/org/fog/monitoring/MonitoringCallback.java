@@ -17,13 +17,11 @@ public class MonitoringCallback implements MqttCallback {
 	}
 	@Override
 	public void connectionLost(Throwable arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void deliveryComplete(IMqttDeliveryToken arg0) {
-		// TODO Auto-generated method stub
 		
 	}
 

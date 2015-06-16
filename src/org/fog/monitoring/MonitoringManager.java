@@ -20,6 +20,10 @@ public class MonitoringManager {
 		return instance;
 	}
 	
+	/**
+	 * Update the resource monitoring system with the newly measured usage value.
+	 * @param resourceMonitorData
+	 */
 	public void insertMonitoringData(ResourceMonitorData resourceMonitorData){
 		if(!checkForExistingFogDevice(resourceMonitorData.getId())){
 			addFogDeviceToNetwork(resourceMonitorData);
@@ -31,12 +35,25 @@ public class MonitoringManager {
 		return FogNetwork.getInstance().getNodes().containsKey(id);
 	}
 	
+	/**
+	 * Add a new fog device to the logical fog network. 
+	 * This method is called when a new fog device sends its monitoring data.
+	 * @param resourceMonitorData
+	 * @return
+	 */
 	private String addFogDeviceToNetwork(ResourceMonitorData resourceMonitorData){
+		/*
+		 * The function performs a search on the existing fog network for the location of the new fog device.
+		 */
+		
 		FogDevice fogDevice = FogNetwork.getInstance().getNodes().get("root");
 		
 		while(true){
 			FogDevice dev = null;
+			
+			// List of nodes in the current level covered by the new fog device.
 			List<String> coveredNodesIds = new ArrayList<String>();
+			
 			for(String southLinkId : fogDevice.getSouthLinks()){
 				String otherEndFogDeviceId = FogNetwork.getInstance().getEdges().get(southLinkId).getEndPointDown();
 				FogDevice otherEndFogDevice = FogNetwork.getInstance().getNodes().get(otherEndFogDeviceId);
