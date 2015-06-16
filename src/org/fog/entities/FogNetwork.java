@@ -1,6 +1,8 @@
 package org.fog.entities;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class FogNetwork {
@@ -42,6 +44,35 @@ public class FogNetwork {
 		this.edges = edges;
 	}
 	
+	public void printNetworkNetFile(){
+		List<String> keys = new ArrayList<String>();
+		for(String key : nodes.keySet()){
+			keys.add(key);
+		}
+		System.out.println("*Vertices "+nodes.keySet().size());
+		int i=1;
+		for(String nodeId : nodes.keySet()){
+			System.out.println(i+" \""+nodeId+"\"");
+			i++;
+		}
+		
+		System.out.println("*Edges");
+		List<String> edgeKeys = new ArrayList<String>();
+		for(String edgeKey : edges.keySet()){
+			edgeKeys.add(edgeKey);
+		}
+		for(String edgeId : edgeKeys){
+			int u = -1;
+			int v = -1;
+			for(i=0;i<keys.size();i++){
+				if(edges.get(edgeId).getEndPointDown().equals(keys.get(i)))
+					u = i+1;
+				if(edges.get(edgeId).getEndPointUp().equals(keys.get(i)))
+					v = i+1;
+			}
+			System.out.println(u+" "+v+" 1");
+		}
+	}
 	
 	
 }

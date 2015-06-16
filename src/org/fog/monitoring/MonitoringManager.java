@@ -101,11 +101,12 @@ public class MonitoringManager {
 
 	public static void main(String args[]){
 		MonitoringManager monitoringManager = new MonitoringManager();
-		System.out.println(monitoringManager.addFogDeviceToNetwork(new ResourceMonitorData("0", 10, 20, 10, 20, 0.1, 0.1, 0.1)));
-		System.out.println(FogNetwork.getInstance().getNodes().get("root").getSouthLinks());
-		System.out.println();
-		System.out.println(monitoringManager.addFogDeviceToNetwork(new ResourceMonitorData("1", 15, 16, 15, 16, 0.1, 0.1, 0.1)));
-		System.out.println(FogNetwork.getInstance().getNodes().get("root").getSouthLinks());
+		monitoringManager.addFogDeviceToNetwork(new ResourceMonitorData("0", 10, 20, 10, 20, 0.1, 0.1, 0.1));
+		monitoringManager.addFogDeviceToNetwork(new ResourceMonitorData("1", 15, 16, 15, 16, 0.1, 0.1, 0.1));
+		monitoringManager.addFogDeviceToNetwork(new ResourceMonitorData("2", 0, 1, 0, 1, 0.1, 0.1, 0.1));
+		monitoringManager.addFogDeviceToNetwork(new ResourceMonitorData("3", 0, 20, 0, 20, 0.1, 0.1, 0.1));
+		monitoringManager.addFogDeviceToNetwork(new ResourceMonitorData("4", -10, 0, -10, 0, 0.1, 0.1, 0.1));
+		monitoringManager.addFogDeviceToNetwork(new ResourceMonitorData("5", -1, 0, -1, 0, 0.1, 0.1, 0.1));
+		FogNetwork.getInstance().printNetworkNetFile();
 	}
-	
 }
