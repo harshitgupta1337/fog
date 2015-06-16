@@ -18,7 +18,7 @@ public class FogNetwork {
 		this.setNodes(new HashMap<String, FogDevice>());
 		this.setEdges(new HashMap<String, NetworkLink>());
 		
-		this.nodes.put("root", new FogDevice("root", 0, -INF, INF, -INF, INF));
+		this.nodes.put("root", new FogDevice("root", 0, -INF, INF, -INF, INF, INF, INF, INF));
 	}
 
 	public static FogNetwork getInstance(){

@@ -9,6 +9,11 @@ public class ResourceManager {
 
 	private Map<String, ResourceMonitorData> resourceMonitorDataMap;
 	
+	public void updateMonitoringData(ResourceMonitorData resourceMonitorData){
+		resourceMonitorDataMap.put(resourceMonitorData.getId(), resourceMonitorData);
+	}
+	
+	
 	private ResourceManager(){
 		this.setResourceMonitorDataMap(new HashMap<String, ResourceMonitorData>());
 	}
@@ -21,7 +26,7 @@ public class ResourceManager {
 		}
 		return instance;
 	}
-
+	
 	public Map<String, ResourceMonitorData> getResourceMonitorDataMap() {
 		return resourceMonitorDataMap;
 	}

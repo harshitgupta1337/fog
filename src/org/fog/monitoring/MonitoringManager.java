@@ -24,7 +24,7 @@ public class MonitoringManager {
 		if(!checkForExistingFogDevice(resourceMonitorData.getId())){
 			addFogDeviceToNetwork(resourceMonitorData);
 		}
-		ResourceManager.getInstance().getResourceMonitorDataMap().put(resourceMonitorData.getId(), resourceMonitorData);
+		ResourceManager.getInstance().updateMonitoringData(resourceMonitorData);
 	}
 	
 	private boolean checkForExistingFogDevice(String id){
@@ -56,7 +56,9 @@ public class MonitoringManager {
 					// FEW CHILD NODES OF fogDevice ARE COVERED BY THE NEW DEVICE. HENCE, NEW DEVICE SHOULD BE A CHILD OF fogDevice
 					
 					FogDevice device = new FogDevice(resourceMonitorData.getId(), fogDevice.getLevel()+1, 
-							resourceMonitorData.getLat_l(), resourceMonitorData.getLat_u(), resourceMonitorData.getLong_l(), resourceMonitorData.getLong_u());
+							resourceMonitorData.getLat_l(), resourceMonitorData.getLat_u(), 
+							resourceMonitorData.getLong_l(), resourceMonitorData.getLong_u(),
+							resourceMonitorData.getMaxCpu(), resourceMonitorData.getMaxMem(), resourceMonitorData.getMaxNw());
 					FogNetwork.getInstance().getNodes().put(device.getId(), device);
 					
 					// CREATING LINK
@@ -73,7 +75,9 @@ public class MonitoringManager {
 				}else{
 					// NO CHILD NODES OF fogDevice ARE COVERED BY THE NEW DEVICE. IT HAS TO BE A SIBLING OF THE CHILD DEVICES
 					FogDevice device = new FogDevice(resourceMonitorData.getId(), fogDevice.getLevel()+1, 
-							resourceMonitorData.getLat_l(), resourceMonitorData.getLat_u(), resourceMonitorData.getLong_l(), resourceMonitorData.getLong_u());
+							resourceMonitorData.getLat_l(), resourceMonitorData.getLat_u(), 
+							resourceMonitorData.getLong_l(), resourceMonitorData.getLong_u(),
+							resourceMonitorData.getMaxCpu(), resourceMonitorData.getMaxMem(), resourceMonitorData.getMaxNw());
 					FogNetwork.getInstance().getNodes().put(device.getId(), device);
 					
 					NetworkLink link = new NetworkLink(fogDevice.getId(), device.getId());
@@ -101,12 +105,12 @@ public class MonitoringManager {
 
 	public static void main(String args[]){
 		MonitoringManager monitoringManager = new MonitoringManager();
-		monitoringManager.addFogDeviceToNetwork(new ResourceMonitorData("0", 10, 20, 10, 20, 0.1, 0.1, 0.1));
-		monitoringManager.addFogDeviceToNetwork(new ResourceMonitorData("1", 15, 16, 15, 16, 0.1, 0.1, 0.1));
-		monitoringManager.addFogDeviceToNetwork(new ResourceMonitorData("2", 0, 1, 0, 1, 0.1, 0.1, 0.1));
-		monitoringManager.addFogDeviceToNetwork(new ResourceMonitorData("3", 0, 20, 0, 20, 0.1, 0.1, 0.1));
-		monitoringManager.addFogDeviceToNetwork(new ResourceMonitorData("4", -10, 0, -10, 0, 0.1, 0.1, 0.1));
-		monitoringManager.addFogDeviceToNetwork(new ResourceMonitorData("5", -1, 0, -1, 0, 0.1, 0.1, 0.1));
+		monitoringManager.addFogDeviceToNetwork(new ResourceMonitorData("0", 10, 20, 10, 20, 0.1, 0.1, 0.1, 100, 100, 100));
+		monitoringManager.addFogDeviceToNetwork(new ResourceMonitorData("1", 15, 16, 15, 16, 0.1, 0.1, 0.1, 100, 100, 100));
+		monitoringManager.addFogDeviceToNetwork(new ResourceMonitorData("2", 0, 1, 0, 1, 0.1, 0.1, 0.1, 100, 100, 100));
+		monitoringManager.addFogDeviceToNetwork(new ResourceMonitorData("3", 0, 20, 0, 20, 0.1, 0.1, 0.1, 100, 100, 100));
+		monitoringManager.addFogDeviceToNetwork(new ResourceMonitorData("4", -10, 0, -10, 0, 0.1, 0.1, 0.1, 100, 100, 100));
+		monitoringManager.addFogDeviceToNetwork(new ResourceMonitorData("5", -1, 0, -1, 0, 0.1, 0.1, 0.1, 100, 100, 100));
 		FogNetwork.getInstance().printNetworkNetFile();
 	}
 }

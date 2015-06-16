@@ -1,17 +1,20 @@
 package org.fog.entities;
 
 public class ResourceMonitorData {
-	String id;
-	double lat_l;
-	double lat_u;
-	double long_l;
-	double long_u;
-	double cpu;
-	double mem;
-	double nw;
+	private String id;
+	private double lat_l;
+	private double lat_u;
+	private double long_l;
+	private double long_u;
+	private double cpu;
+	private double mem;
+	private double nw;
+	private double maxCpu;
+	private double maxMem;
+	private double maxNw;
 	
 	public ResourceMonitorData(String id, double lat_l, double lat_u, double long_l, double long_u, 
-			double cpu, double mem, double nw){
+			double cpu, double mem, double nw, double maxCpu, double maxMem, double maxNw){
 		this.id = id;
 		this.lat_l = lat_l;
 		this.lat_u = lat_u;
@@ -20,6 +23,9 @@ public class ResourceMonitorData {
 		this.cpu = cpu;
 		this.mem = mem;
 		this.nw = nw;
+		this.maxCpu = maxCpu;
+		this.maxMem = maxMem;
+		this.maxNw = maxNw;
 	}
 
 
@@ -85,6 +91,36 @@ public class ResourceMonitorData {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+
+	public double getMaxCpu() {
+		return maxCpu;
+	}
+
+
+	public void setMaxCpu(double maxCpu) {
+		this.maxCpu = maxCpu;
+	}
+
+
+	public double getMaxMem() {
+		return maxMem;
+	}
+
+
+	public void setMaxMem(double maxMem) {
+		this.maxMem = maxMem;
+	}
+
+
+	public double getMaxNw() {
+		return maxNw;
+	}
+
+
+	public void setMaxNw(double maxNw) {
+		this.maxNw = maxNw;
 	}
 
 }

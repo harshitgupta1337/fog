@@ -12,16 +12,23 @@ public class FogDevice {
 	private double lat_u;
 	private double long_l;
 	private double long_u;
+	private double maxCpu;
+	private double maxMem;
+	private double maxNw;
 	private List<String> southLinks;
 	private String northLink;
 	
-	public FogDevice(String id, int level, double lat_l, double lat_u, double long_l, double long_u){
+	public FogDevice(String id, int level, double lat_l, double lat_u, double long_l, double long_u,
+			double maxCpu, double maxMem, double maxNw){
 		this.id = id;
 		this.level = level;
 		this.lat_l = lat_l;
 		this.lat_u = lat_u;
 		this.long_l = long_l;
 		this.long_u = long_u;
+		this.maxCpu = maxCpu;
+		this.maxMem = maxMem;
+		this.maxNw = maxNw;
 		this.setSouthLinks(new ArrayList<String>());
 	}
 	
@@ -85,5 +92,29 @@ public class FogDevice {
 
 	public void setSouthLinks(List<String> southLinks) {
 		this.southLinks = southLinks;
+	}
+
+	public double getMaxCpu() {
+		return maxCpu;
+	}
+
+	public void setMaxCpu(double maxCpu) {
+		this.maxCpu = maxCpu;
+	}
+
+	public double getMaxMem() {
+		return maxMem;
+	}
+
+	public void setMaxMem(double maxMem) {
+		this.maxMem = maxMem;
+	}
+
+	public double getMaxNw() {
+		return maxNw;
+	}
+
+	public void setMaxNw(double maxNw) {
+		this.maxNw = maxNw;
 	}
 }

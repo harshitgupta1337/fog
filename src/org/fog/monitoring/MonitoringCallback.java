@@ -5,11 +5,15 @@ import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.fog.entities.ResourceMonitorData;
 
+import com.google.gson.Gson;
+
 public class MonitoringCallback implements MqttCallback {
 
+	Gson gson;
+	
 	public MonitoringCallback() {
 		super();
-		// TODO Auto-generated constructor stub
+		gson = new Gson();
 	}
 	@Override
 	public void connectionLost(Throwable arg0) {
@@ -26,10 +30,11 @@ public class MonitoringCallback implements MqttCallback {
 	@Override
 	public void messageArrived(String topic, MqttMessage message) throws Exception {
 		ResourceMonitorData resourceMonitorData = getResourceMonitorData(topic, message.toString());
+		MonitoringManager.getInstance().insertMonitoringData(resourceMonitorData);
 		System.out.println("Message Arrived : "+message.toString());
 	}
 
 	private ResourceMonitorData getResourceMonitorData(String topic, String message){
-		return null;
+		return gson.fromJson(message, ResourceMonitorData.class);
 	}
 }
